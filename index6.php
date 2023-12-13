@@ -3,8 +3,10 @@
 
 // Afficher le titre de tous les spectacles ainsi que l'artiste, la date et l'heure. Trier les titres par ordre alphabétique. Afficher les résultat comme ceci : *Spectacle* par *artiste*, le *date* à *heure*.
 require_once('./database.php');
-$request = $database->query('SELECT * FROM clients ORDER BY firstName ASC');
-$clients = $request->fetchAll();
+$request = $database->query('SELECT * FROM shows ORDER BY title ASC ');
+$shows = $request->fetchAll();
+echo "<hr>";
+
 ?>
 
 
@@ -26,12 +28,10 @@ $clients = $request->fetchAll();
 <body>
 
     <ul>
-   
         <?php
-        foreach ($clients as $client) {
-           
-            echo '<li>' . 'Nom:  ' . $client['firstName'] .'***'. 'Prénom:  ' . $client['lastName'] . '</li>';}
-        
+        foreach ($shows as $show) {
+            echo '<li>' .  $show['title'] . ' *** ' . $show['date']  . ' *** ' . $show['startTime'] . '</li>';
+        }
         ?>
     </ul>
 </body>

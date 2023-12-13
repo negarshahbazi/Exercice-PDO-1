@@ -4,6 +4,8 @@
     require_once('./database.php');
 $request = $database->query('SELECT * FROM clients');
 $clients = $request->fetchAll();
+
+// var_dump($clients);
 echo "<hr>";
 
 ?>

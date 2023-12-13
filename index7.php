@@ -13,8 +13,11 @@
 
 // **Numéro de carte :** *Numéro de la carte fidélité du client s'il en possède une.*
     require_once('./database.php');
-$request = $database->query('SELECT * FROM clients');
-$clients = $request->fetchAll();
+    $request = $database->query('SELECT * FROM clients  LEFT JOIN cards ON cards.cardNumber=clients.cardNumber ');
+    $clients = $request->fetchAll();
+    // $cards = $request->fetchAll();
+
+    // var_dump($clients);
 echo "<hr>";
 
 ?>
@@ -40,7 +43,11 @@ echo "<hr>";
     <ul>
         <?php
         foreach ($clients as $client) {
-            echo '<li>' . $client['id'] . '** nom : ' . $client['firstName'] . '**prénom:  ' . $client['lastName'] . '**Date de naissance: ' . $client['birthDate'] .'** Numéro de carte : ' . $client['card'] . ' ' . $client['cardNumber'] .'</li>';
-        }
+         
+            if ($client['cardTypesId']===1){
+            echo '<li>' . $client['id'] . '** nom : ' . $client['lastName'] . '**prénom:  ' . $client['firstName'] . '**Date de naissance: ' . $client['birthDate'] .'**Carte de fidélité : YES ** Numéro de carte :  ' . $client['cardNumber'] .'</li>';
+        }else{
+            echo '<li>' . $client['id'] . '** nom : ' . $client['lastName'] . '**prénom:  ' . $client['firstName'] . '**Date de naissance: ' . $client['birthDate'] .'**Carte de fidélité : NO ** Numéro de carte : -  </li>';
+        }}
         ?>
     </ul>
