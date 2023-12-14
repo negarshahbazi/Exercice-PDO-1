@@ -11,8 +11,8 @@
 // Trier les noms par ordre alphabétique.
 
 require_once('./database.php');
-$request = $database->query('SELECT * FROM clients');
-$clients = $request->fetchAll();
+$request = $database->query('SELECT * FROM clients WHERE lastName LIKE "M%" ORDER BY lastName ');
+$clientsWhitStartM = $request->fetchAll();
 ?>
 
 
@@ -36,9 +36,9 @@ $clients = $request->fetchAll();
     <ul>
    
         <?php
-        foreach ($clients as $client) {
-            if ($client['lastName'][0] === 'M'){
-            echo '<li>' . 'Nom:  ' . $client['firstName'] .'*'. 'Prénom:  ' . $client['lastName'] . '</li>';}
+        foreach ($clientsWhitStartM as $clientWhitStartM) {
+       
+            echo '<li>' . 'Nom:  ' . $clientWhitStartM['firstName'] .'*'. 'Prénom:  ' . $clientWhitStartM['lastName'] . '</li>';
         }
         ?>
     </ul>

@@ -5,7 +5,7 @@
 require_once('./database.php');
 
 $request = $database->query('SELECT * FROM clients INNER JOIN cards ON cards.cardNumber = clients.cardNumber WHERE cardTypesId=1');
-$clients = $request->fetchAll();
+$clientsWithCarts = $request->fetchAll();
 
 ?>
 
@@ -30,10 +30,10 @@ $clients = $request->fetchAll();
     <ul>
    
         <?php
-        foreach ($clients as $client  ) {
+        foreach ($clientsWithCarts as $clientsWithCart ) {
            
              
-            echo '<li>'  . $client['firstName'] . ' ' . $client['lastName'] . '</li>';}
+            echo '<li>'  . $clientsWithCart['firstName'] . ' ' . $clientsWithCart['lastName'] . '</li>';}
         
         ?>
     </ul>

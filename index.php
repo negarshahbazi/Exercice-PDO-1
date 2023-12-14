@@ -27,7 +27,7 @@ echo "<hr>";
 </head>
 
 <body>
-
+<h2>TOUS les clients:</h2>
     <ul>
         <?php
         foreach ($clients as $client) {

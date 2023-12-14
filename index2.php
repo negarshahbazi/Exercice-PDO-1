@@ -3,7 +3,7 @@
 
 // Afficher tous les types de spectacles possibles.
     require_once('./database.php');
-$request = $database->query('SELECT * FROM showtypes');
+$request = $database->query('SELECT DISTINCT * FROM showtypes');
 $showtypes = $request->fetchAll();
 echo "<hr>";
 
